@@ -73,13 +73,6 @@ class Player {
         push();
         translate(this.x, this.y);
         rotate(this.angle);
-        // const ax = this.x + (this.size*(Math.cos(this.angle)));
-        // const ay = this.y + (this.size*(Math.sin(this.angle)));
-        // const bx = this.x + (this.size*Math.cos(this.angle+(2.5/3*Math.PI)));
-        // const by = this.y + (this.size*Math.sin(this.angle+(2.5/3*Math.PI)));
-        // const cx = this.x + (this.size*Math.cos(this.angle-(2.5/3*Math.PI)));
-        // const cy = this.y + (this.size*Math.sin(this.angle-(2.5/3*Math.PI)));
-        // triangle(ax, ay, bx, by, cx, cy);
         fill('red');
         triangle(-8, 13, 8, 13, 0, -13);
         pop();
