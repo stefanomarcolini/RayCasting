@@ -1,47 +1,3 @@
-const TILE_SIZE = 32;
-const NUM_ROWS = 15;
-const NUM_COLS = 15;
-const C_WIDTH = TILE_SIZE * NUM_COLS;
-const C_HEIGHT = TILE_SIZE * NUM_ROWS;
-
-/************************************************
- * Class LandMap
- ***********************************************/
-class LandMap {
-    constructor() {
-        this.grid = [
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1],
-            [1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1],
-            [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            [1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            [1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-            [1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1],
-            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            [1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1],
-            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1],
-            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
-            [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-        ];
-    }
-
-    render() {
-        for (let row = 0; row < NUM_ROWS; row++) {
-            for (let col = 0; col < NUM_COLS; col++) {
-                let tyleColor = this.grid[row][col] === 1 ? "#222" : "#fff";
-                fill(tyleColor);
-                stroke("#aaa");
-                let tyleX = col * TILE_SIZE;
-                let tyleY = row * TILE_SIZE;
-                rect(tyleX, tyleY, TILE_SIZE, TILE_SIZE)
-            }
-        }
-    }
-}
-
 /************************************************
  * Class Player
  ***********************************************/
@@ -130,29 +86,4 @@ class Player {
 
         return [newX, newY];
     }
-}
-
-
-/************************************************
- * Globals
- ***********************************************/
-const grid = new LandMap();
-const player = new Player(C_WIDTH / 2, C_HEIGHT / 2, 0, 0.05, 2);
-
-
-/************************************************
- * GameLoop
- ***********************************************/
-function setup() {
-    createCanvas(C_WIDTH, C_HEIGHT);
-}
-
-function update() {
-    player.update();
-}
-
-function draw() {
-    update()
-    grid.render();
-    player.render();
 }
