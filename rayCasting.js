@@ -98,32 +98,31 @@ class Player {
     }
 
     render() {
+        let vertex1 = { x: this.x - 8, y: this.y + 13 };
+        let vertex2 = { x: this.x + 8, y: this.y + 13 };
+        let vertex3 = { x: this.x, y: this.y - 13 };
+
+        let rotatedVertex1 = this.rotate(vertex1.x, vertex1.y);
+        let rotatedVertex2 = this.rotate(vertex2.x, vertex2.y);
+        let rotatedVertex3 = this.rotate(vertex3.x, vertex3.y);
+
         push();
-        let p1x = this.x - 8;
-        let p1y = this.y + 13;
-        let p2x = this.x + 8;
-        let p2y = this.y + 13;
-        let p3x = this.x;
-        let p3y = this.y - 13;
         fill('red');
-        let rotatedVertex1 = this.rotateTile(p1x, p1y);
-        let rotatedVertex2 = this.rotateTile(p2x, p2y);
-        let rotatedVertex3 = this.rotateTile(p3x, p3y);
         triangle(rotatedVertex1[0], rotatedVertex1[1], rotatedVertex2[0], rotatedVertex2[1], rotatedVertex3[0], rotatedVertex3[1]);
         pop();
     }
 
-    rotateTile(a, b) {
+    rotate(x, y) {
         let cos = Math.cos(this.angle);
         let sin = Math.sin(this.angle);
 
         // translate to origin
-        a -= this.x;
-        b -= this.y;
+        x -= this.x;
+        y -= this.y;
 
         // rotate
-        let newX = a * cos - b * sin;
-        let newY = a * sin + b * cos;
+        let newX = x * cos - y * sin;
+        let newY = x * sin + y * cos;
 
         // translate back
         newX += this.x;
