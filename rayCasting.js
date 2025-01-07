@@ -69,15 +69,6 @@ class Player {
         }
     }
 
-    render() {
-        push();
-        translate(this.x, this.y);
-        rotate(this.angle);
-        fill('red');
-        triangle(-8, 13, 8, 13, 0, -13);
-        pop();
-    }
-
     rotateLeft() {
         this.angle -= this.angleSpeed;
     }
@@ -104,6 +95,41 @@ class Player {
             this.x = tmpX;
             this.y = tmpY;
         }
+    }
+
+    render() {
+        push();
+        let p1x = this.x - 8;
+        let p1y = this.y + 13;
+        let p2x = this.x + 8;
+        let p2y = this.y + 13;
+        let p3x = this.x;
+        let p3y = this.y - 13;
+        fill('red');
+        let rotatedVertex1 = this.rotateTile(p1x, p1y);
+        let rotatedVertex2 = this.rotateTile(p2x, p2y);
+        let rotatedVertex3 = this.rotateTile(p3x, p3y);
+        triangle(rotatedVertex1[0], rotatedVertex1[1], rotatedVertex2[0], rotatedVertex2[1], rotatedVertex3[0], rotatedVertex3[1]);
+        pop();
+    }
+
+    rotateTile(a, b) {
+        let cos = Math.cos(this.angle);
+        let sin = Math.sin(this.angle);
+
+        // translate to origin
+        a -= this.x;
+        b -= this.y;
+
+        // rotate
+        let newX = a * cos - b * sin;
+        let newY = a * sin + b * cos;
+
+        // translate back
+        newX += this.x;
+        newY += this.y;
+
+        return [newX, newY];
     }
 }
 
